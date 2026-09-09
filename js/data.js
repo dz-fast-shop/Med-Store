@@ -71,11 +71,7 @@ const COMMUNES = {
   "المنيعة": ["المنيعة","حاسي القارة"]
 };
 
-// ⚠️ عدّل هذه الإعدادات قبل النشر
 const CONFIG = {
-  // رقم واتساب الخاص بك بالصيغة الدولية بدون + (مثال: 213550123456)
-  WHATSAPP_NUMBER: "213663786718",
-  // رابط Google Apps Script Web App (اتركه فارغاً إذا لم تربطه بعد)
-  SHEET_WEBHOOK_URL: "",
+  SHEET_WEBHOOK_URL: "https://script.google.com/macros/s/AKfycbxc0nbG6Fgtjm68mkrfcYb1-CXMHbGxCYcxxJIvIHAHkqf-5GmT2EFYcyQIeUZ72Tc/exec",
   STORE_NAME: "Med Store"
 };
