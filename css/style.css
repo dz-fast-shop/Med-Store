@@ -1,4 +1,4 @@
-/* صفحة هبوط COD - الجزائر */
+/* صفحة هبوط COD - الجزائر - دهان الحنظل */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
@@ -50,31 +50,31 @@ body {
   font-weight: bold;
   margin-bottom: 12px;
 }
-.hero h1 { font-size: 26px; color: var(--green-dark); margin-bottom: 8px; }
+.hero h1 { font-size: 25px; color: var(--green-dark); margin-bottom: 8px; line-height: 1.3; }
 .hero-sub { color: var(--gray); font-size: 15px; margin-bottom: 18px; }
 
-.hero-img-wrap { position: relative; display: inline-block; }
-.hero-img {
-  width: 240px; height: 240px;
-  margin: 0 auto;
-  background: linear-gradient(135deg, #bbf7d0, #86efac);
+/* صورة المنتج في الهيرو */
+.hero-img-wrap { position: relative; display: inline-block; width: 100%; max-width: 420px; margin: 0 auto; }
+.hero-product-img {
+  width: 100%;
+  height: auto;
   border-radius: 20px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 110px;
-  box-shadow: 0 15px 35px rgba(22,163,74,.25);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  display: block;
 }
+
 .price-tag {
-  position: absolute; bottom: -12px; left: 50%;
+  position: absolute; bottom: -15px; left: 50%;
   transform: translateX(-50%);
   background: var(--red); color: #fff;
-  padding: 6px 18px; border-radius: 30px;
+  padding: 8px 22px; border-radius: 30px;
   font-weight: bold; white-space: nowrap;
   box-shadow: 0 5px 15px rgba(220,38,38,.4);
 }
-.price-tag .old-price { text-decoration: line-through; font-size: 13px; opacity: .85; margin-left: 8px; }
-.price-tag .new-price { font-size: 17px; }
+.price-tag .old-price { text-decoration: line-through; font-size: 14px; opacity: .85; margin-left: 8px; }
+.price-tag .new-price { font-size: 19px; }
 
-.hero-desc { max-width: 520px; margin: 30px auto 20px; font-size: 15px; color: #374151; }
+.hero-desc { max-width: 520px; margin: 35px auto 20px; font-size: 15px; color: #374151; }
 
 .cta-big {
   display: inline-block;
@@ -100,30 +100,41 @@ body {
 }
 .trust-item span { font-weight: 600; }
 
-/* الأقسام */
-section { padding: 35px 15px; max-width: 700px; margin: 0 auto; }
+/* الأقسام والصور البانر */
+section { padding: 30px 15px; max-width: 650px; margin: 0 auto; }
 section h2 {
   text-align: center; color: var(--green-dark);
   font-size: 22px; margin-bottom: 20px;
 }
 
+.section-promo-img, .section-banner-img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  margin-bottom: 20px;
+  display: block;
+}
+
+.banner-wrapper { margin-bottom: 20px; }
+
 /* المميزات */
 .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .feature-card {
   background: #fff; border: 1px solid #e5e7eb;
-  border-radius: 14px; padding: 18px 12px;
+  border-radius: 14px; padding: 16px 12px;
   text-align: center;
 }
-.feature-icon { font-size: 34px; margin-bottom: 8px; }
-.feature-card h3 { font-size: 15px; color: var(--green-dark); margin-bottom: 6px; }
-.feature-card p { font-size: 12.5px; color: var(--gray); }
+.feature-icon { font-size: 32px; margin-bottom: 6px; }
+.feature-card h3 { font-size: 15px; color: var(--green-dark); margin-bottom: 4px; }
+.feature-card p { font-size: 12px; color: var(--gray); line-height: 1.5; }
 
 /* طريقة الاستعمال */
-.how-steps { max-width: 480px; margin: 0 auto; padding-right: 20px; }
+.how-steps { max-width: 100%; margin: 0 auto; list-style: none; }
 .how-steps li {
   background: #fff; border: 1px solid #e5e7eb;
   border-radius: 12px; padding: 12px 15px;
-  margin-bottom: 10px; font-size: 14px;
+  margin-bottom: 10px; font-size: 14.5px;
 }
 
 /* الآراء */
@@ -137,10 +148,10 @@ section h2 {
 .review-name { font-size: 12px; color: var(--gray); font-weight: bold; }
 
 /* نموذج الطلب */
-.order { background: #fff; border-top: 3px solid var(--green); }
+.order { background: #fff; border-top: 3px solid var(--green); border-radius: 20px 20px 0 0; }
 .order-sub { text-align: center; color: var(--gray); font-size: 14px; margin-bottom: 22px; }
 
-.offers { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+.offers { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
 .offer-card {
   position: relative;
   border: 2px solid #e5e7eb; border-radius: 14px;
@@ -153,7 +164,7 @@ section h2 {
   background: var(--green-light);
 }
 .offer-card input { position: absolute; opacity: 0; }
-.offer-title { font-weight: bold; font-size: 15px; }
+.offer-title { font-weight: bold; font-size: 14.5px; }
 .offer-price b { color: var(--red); font-size: 18px; }
 .offer-price s { color: var(--gray); font-size: 13px; margin-right: 6px; }
 .offer-badge {
@@ -230,6 +241,6 @@ section h2 {
 .footer p { margin-bottom: 5px; }
 
 @media (max-width: 420px) {
-  .hero h1 { font-size: 22px; }
-  .trust { grid-template-columns: repeat(2, 1fr); }
+  .hero h1 { font-size: 21px; }
+  .trust { grid-template-columns: repeat(2, 1fr); gap: 12px; }
 }
