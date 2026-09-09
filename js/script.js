@@ -1,4 +1,4 @@
-// منطق صفحة الهبوط COD - إرسال حصري إلى Google Sheets
+// منطق صفحة الهبوط COD - إرسال حصري وموثوق إلى Google Sheets
 document.addEventListener('DOMContentLoaded', function () {
 
   // 1) تعبئة قائمة الولايات
@@ -117,11 +117,11 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
       }
 
-      // إرسال البيانات إلى Google Sheets
+      // إرسال البيانات كنص صريح تفادياً لحظر CORS من جوجل
       fetch(sheetUrl, {
         method: 'POST',
         mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify(order)
       })
       .then(function () {
