@@ -76,10 +76,10 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // 2) تعبئة البلديات وتحديث سعر التوصيل عند اختيار الولاية
+  // 2) تعبئة البلديات وتحديث سعر التوصيل
   if (wilayaSelect) {
     wilayaSelect.addEventListener('change', function () {
-      communeSelect = document.getElementById('commune'); // Re-fetch in case it was replaced by input
+      communeSelect = document.getElementById('commune');
       if (communeSelect && communeSelect.tagName === 'SELECT') {
         communeSelect.innerHTML = '';
         const list = (typeof COMMUNES !== 'undefined' && COMMUNES[this.value]) ? COMMUNES[this.value] : [];
@@ -184,10 +184,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const offer = offerInput ? offerInput.value : '';
 
       const deliveryTypeInput = document.querySelector('input[name="delivery_type"]:checked');
-      const deliveryType = deliveryTypeInput ? (deliveryTypeInput.value === 'home' ? 'توصيل للبيت' : 'استلام من المكتب') : 'توصيل للبيت';
-
-      const deliveryPriceText = document.getElementById('summaryDeliveryPrice') ? document.getElementById('summaryDeliveryPrice').textContent : '0 دج';
-      const totalPriceText = document.getElementById('summaryTotalPrice') ? document.getElementById('summaryTotalPrice').textContent : offer;
+      const deliveryType = deliveryTypeInput ? deliveryTypeInput.value : 'home';
 
       // التحقق من الحقول
       if (!nom || !phone || !wilaya || !commune) {
@@ -199,14 +196,28 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
       }
 
+      // حساب أسعار البيت والمكتب بشكل مفصل
+      let homePrice = '';
+      let deskPrice = '';
+      if (wilaya && yalidineTarifs[wilaya]) {
+        if (deliveryType === 'home') {
+          homePrice = yalidineTarifs[wilaya]['home'] + ' دج';
+        } else {
+          deskPrice = yalidineTarifs[wilaya]['desk'] + ' دج';
+        }
+      }
+
+      const totalPriceText = document.getElementById('summaryTotalPrice') ? document.getElementById('summaryTotalPrice').textContent : offer;
+
       const order = {
         nom: nom,
         phone: phone,
         wilaya: wilaya,
         commune: commune,
         offer: offer,
-        delivery_type: deliveryType,
-        delivery_price: deliveryPriceText,
+        delivery_type: deliveryType === 'home' ? 'توصيل للبيت' : 'استلام من المكتب',
+        home_price: homePrice,
+        desk_price: deskPrice,
         total_price: totalPriceText,
         date: new Date().toLocaleString('ar-DZ')
       };
@@ -215,7 +226,6 @@ document.addEventListener('DOMContentLoaded', function () {
       btn.disabled = true;
       btn.textContent = '⏳ جارٍ الإرسال...';
 
-      // التحقق من وجود رابط Webhook الخاص بـ Google Sheets
       const sheetUrl = (typeof CONFIG !== 'undefined' && CONFIG.SHEET_WEBHOOK_URL) ? CONFIG.SHEET_WEBHOOK_URL : '';
 
       if (!sheetUrl) {
@@ -225,7 +235,6 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
       }
 
-      // إرسال البيانات كنص صريح تفادياً لحظر CORS من جوجل
       fetch(sheetUrl, {
         method: 'POST',
         mode: 'no-cors',
@@ -237,12 +246,10 @@ document.addEventListener('DOMContentLoaded', function () {
         btn.textContent = '✅ تأكيد الشراء الآن';
         form.reset();
 
-        // إعادة التحديد التلقائي للعرض الأول
         if (offerCards[0]) {
           offerCards[0].click();
         }
 
-        // إظهار نافذة الشكر للزبون
         const successModal = document.getElementById('successModal');
         if (successModal) {
           successModal.classList.add('show');
@@ -258,7 +265,6 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-// إغلاق نافذة النجاح
 function closeModal() {
   const successModal = document.getElementById('successModal');
   if (successModal) {
